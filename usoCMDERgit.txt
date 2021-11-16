@@ -1,0 +1,258 @@
+Activar comandos linux en win10:
+pegar el siguiente comando en powershell(administrador)
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux 
+
+
+$ man		-> manual de linux ejem: $man ls
+$ whatis	-> manual simplificado ejem: $whatis ls
+
+FLAGS:
+-a (archivos ocultos) | -l (listado detallado) 
+
+1. pwd
+Significa Personal Working Directory te muestra la ruta del directorio en que estás ubicado actualmente.
+
+$ pwd
+/home/alejandro/EDteam
+====================================================================
+2. mkdir
+Significa Make Directory y con él puedes crear una nueva carpeta con el nombre que indiques.
+
+mkdir {nombre_de_la_carpeta}
+
+$ mkdir mi_carpeta
+$ mkdir -p mi_carpeta/documentos  (-p permite crear carpetas dentro de otras)
+====================================================================
+3. touch 
+Con este comando puedes crear nuevos archivos en el directorio actual.
+
+$ touch mi_archivo.txt
+$ ls
+mi_archivo.txt
+
+$ nano editor de texto vim: abre archivo txt (para seleccionar opciones press control)
+$ nano mi_archivo.txt
+
+$ cat (concatenar): 
+$ cat mi_archivo.txt
+Hola estoy aprendiendo a usar la terminal
+
+( > )simbolo de redirección, sobre escribe elcontenido de un archivo por otro
+( >> )simbolo de redirección, agrega contenido a un archivo sin reescribir
+
+$ echo "contenido" > nombreArchivo.txt
+$ echo "contenido" >> nombreArchivo.txt (agregar contenido)
+====================================================================
+4. ls
+Este comando lista los archivos y directorios de la carpeta actual.
+
+$ ls
+mi_archivo.txt
+mi_carpeta
+Si quieres mostrar elementos ocultos, usa el flag -a.
+
+$ ls -a
+.soy_un_archivo_oculto
+mi_archivo.txt
+mi_carpeta
+Para listar el contenido detallado usa el flag -l
+
+$ ls -l
+-rw-rw-r-- 1 alejandro alejandro    0 oct 22 16:46 mi_archivo.txt
+drwxrwxr-x 2 alejandro alejandro 4096 oct 22 16:42 mi_carpeta
+====================================================================
+5. cd  (.. directorio anterior) -- con CYGWIN --> cd C:/Users/JB
+El comando cd (change directory) permite moverse entre directorios del sistema.
+
+cd {ruta\_absoluta\_o\_relativa}
+
+Puedes cambiar de directorio especificando la ruta absoluta desde el directorio raíz o relativa desde tu ubicación actual, en Linux el directorio actual se indica con el signo .
+
+Los siguientes tres comandos realizan la misma acción para moverte al directorio mi\_carpeta
+
+$ pwd
+/home/alejandro/EDteam
+$ cd /home/alejandro/EDteam/mi_carpeta
+$ cd ./mi_carpeta
+$ cd mi_carpeta
+Para regresar al directorio anterior usa el comando cd -
+
+$ pwd
+/home/alejandro/EDteam/mi_carpeta
+$ cd -
+$ pwd
+/home/alejandro/EDteam
+Para moverte un directorio por encima de tu posición actual puedes usar el comando cd ..,
+o una secuencia de .. para ir subiendo por la estructura de directorios. 
+Por ejemplo para ir a la carpeta home desde nuestra ubicación actual EDteam usaremos:
+
+$ pwd
+/home/alejandro/EDteam
+$ cd ../..
+$ pwd
+/home 
+====================================================================
+6. mv
+El comando mv (Move) mueve directorios o archivos de una ubicación a otra. Su sintaxis es: mv {ubicación\_actual} {nueva\_ubicación}
+
+$ mv mi_archivo.txt ./mi_carpeta/mi_archivo.txt
+También puedes renombrar archivos y carpetas con este mismo comando: mv {nombre\_actual} {nombre\_nuevo}
+
+$ mv mi_archivo.txt usuarios.txt
+$ mv mi_carpeta cursos
+====================================================================
+7. cp
+El comando cp (Copy) copia archivos o directorios. Su sintaxis es cp {origen} {destino}
+
+$ cp usuarios.txt usuarios_copia.txt
+Para copiar directorios agrega la opción -r.
+
+$ cp -r cursos/ cursos_copia/
+====================================================================
+8. rm y rmdir
+El comando rm (Remove) elimina archivos. Su sintaxis es rm {nombre\_del\_archivo}
+
+El comando rmdir (Remove directory) elimina carpetas vacías. Su sintaxis es: rmdir {nombre\_carpeta}
+
+$ rmdir carpeta_vacia/
+Para eliminar directorios no vacíos usa el comando rm con la opción -r o -rf (forzado)
+
+$ rm -r cursos_copia/ 
+====================================================================
+9. cat
+El comando cat te permite leer el contenido de archivos.
+
+$ cat notas.txt
+Estas son las notas de mi curso
+Fin de las notas de mi curso
+Puedes mostrar las lineas del archivo con la opción -n.
+
+$ cat -n notas.txt
+1 Estas son las notas de mi curso
+2 Fin de las notas de mi curso
+====================================================================
+10. find
+Con el comando find y la opción -iname puedes encontrar archivos. La sintaxis es: find {donde\_buscar} -iname {archivo\_a\_buscar}
+
+$ find . -iname "usuarios.txt"
+./cursos/usuarios.txt
+====================================================================
+11 $ man  (manual) 
+$ man ls  | banderas(flags) -a | -l  | -la  | clear (limpia consola) | .. (directorio anterior)
+
+ls -a (flag -a lista los archivos y archivos ocultos los identifica con un punto adelante)
+ls -l (flag -l lista larga con detalles)
+====================================================================
+$ touch (cambiar fecha de creacion de archivos) y crear archivos
+
+====================================================================
+====================================================================
+GIT (sistema de control de versiones) 
+-es un conjunto de precedimientos que registra solo los cambios realizados en archivos a lo largo del tiempo
+-recupera versiones especificas
+  -regresar a versiones anteriores de tus archivos
+  -regresar a versiones anteriores del proyecto completo
+  -comparar cambios a lo largo del tiempo
+  -Ver quien modifico un archivo en un momento especifico
+  -Recuperar archivos perdidos o arruinados
+====================================================================
+GIT tenemos tres areas (aprender las definiciones en ingles ojo)
+*Working Dyrectory:direcotirio de trabajo (modified)
+  --> git add (comando)
+    *Staging Area:Area de preparación (staged)
+      --> git commit (comando)
+        *Local Repository:Directorio de Git (committed "listos para ser subido,enviados") para compartir hacer in push
+	   git push origin master (subir el repositorio a github)
+====================================================================
+GIT CONFIGURACIÓN (solo una vez)
+
+$ git config --global user.name "Jorge Barff"
+$ git config --global user.email "jluisbarrios787@gmail.com"
+$ git config --list (para confirmar los datos)
+
+====================================================================
+GIT crear o clonar repositorio
+
+$ git init (inicialia repositorio vacio de git)(ls -a solo para ver lo creado por git),
+  git init no sobre escribe un repositorio ya creado
+====================================================================
+GIT ADD y GIT STATUS: en la terminal de vs ejecutar el comando.
+
+$ git status (muestra los archivos agregados al 2do estado "staged" en verde, los que no en color rojo)
+
+$ git add {nombre del archivo}
+$ git add index.html  (ahora el archivo esta en el 2do estado "staged" identificado en color verde)             
+
+$ git add --all  (para agregar todos los archivos que aun o haya sido guardados) ó
+$ git add .
+---------------------------------------------------
+git checkout -- index.html (para descartar cambios)
+git diff index.html (para ver los cambior realizados)
+---------------------------------------------------
+GIT IGNORAR ARCHIVOS 
+crear un archivo con el editor de codigo llmanado:
+.gitignore (y dentro de este escribir los nombre de los archivos a ignorar)
+luego add "agregar el archivo .gitignore":
+$ git add .gitignore
+====================================================================
+GIT COMMIT (3er estado)
+
+$ git commit -m "comentario sobre el archivo a subir"
+ (de no agregaar -m "comentario")
+se abre automaticamete el edito vim, para poner comentario en la parte superior
+para salir press Esc luego :wq y enter para guardar.
+
+====================================================================
+GIT ver el estado de los COMMIT
+
+$ git log
+====================================================================
+GIT BRANCH (crer un nuevo branch (rama)) luego de guardar con un commit.
+es posible crear un nuevo branch del master (todos los archivos dentro de este)con un nuevo nombre.
+
+$ git branch (para ver en que rama te encuentras)
+
+$ git branch copiaMaster (ó cualquier otro nombre) luego -->
+$ git checkout copiaMaster (para moverte dentro de esta nueva copia de archivos copiaMaster)
+$ git brach (para verificar el cambio de rama en el que te encuentras ahora)
+====================================================================
+GIT configurando github, git remote y git push
+
+$ git remote add origin https://github.com/jbfretel/PruebaCursoGit.git
+
+$ git remote -v (para ver los repositorios agregados satisfactoriamente)
+
+$ git push origin master
+
+luego colorcar email y pass
+
+--->para subir cambios verificar con el git status, luego agregar con git add -all(si fuse todo a subir)
+verificar con git remote -v, luego con git push origin master subir los archivos. y verificar en github
+
+====================================================================
+GIT PULL se usa para jalar el commit (el push modificado por otro) hacia mi repositorio remoto (en mi pc)
+
+$git pull origin master
+
+
+
+
+
+
+
+====================================================================
+====================================================================+
+otros comandos linux:
+
+$ reboot	-> reinciar equipo
+$ halt		-> apagar equipo
+$ exit		-> salir
+$ logout	-> cerrar sesion
+$ reset		-> limpiar pantalla
+$ date		-> fecha
+$ cal		-> calendario
+$ history	-> historial de comandos usados (history -c) borra historial
+$ df -h		-> muestra las particiones y el espacio disponible en el equipo
+$ whoami	-> ver el tipo de usuario (usurio root o no root)
+
+$ nano /etc/resolv.conf		-> para editar dns,valido para linux 

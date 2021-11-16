@@ -1,0 +1,59 @@
+METODOLOGIA BEM (BLOCK ELEMENTO MODIFIER):
+http://getbem.com/introduction/
+
+FORMAS DE COLOR CSS:
+Palabras clave 
+https://developer.mozilla.org/en-US/docs/Web/CSS/color_value
+
+ICONOS GRATIS:
+https://www.flaticon.es/packs/peru-48
+
+BOTONES HAMBURGUESA:
+https://jonsuh.com/hamburgers/
+https://cdnjs.com/libraries/hamburgers   (LINK)
+
+CHEAT SHEET Y GENERADOREES:
+https://divtable.com/table-styler/
+https://grid.layoutit.com/  (GENERADOR GRID)
+https://tablestyler.com/#   (GENERADOR TABLAS)
+
+EDITOR DE CODIGO ONLINE:
+https://liveweave.com/
+https://codepen.io/search/pens?q=table&cursor=ZD0xJm89MCZwPTc=
+
+COMPROBAR SOPORTE DE ETIQUETAS O ESTILOS:
+https://caniuse.com/css-sticky
+
+IMAGENES GRATIS PARA WEBS:
+https://pixabay.com/es/photos/empresario-traje-reloj-negocios-4279254/
+
+EMMET DOCUMENTATION:
+https://docs.emmet.io/abbreviations/syntax/
+
+MECANOGRAFIA:
+https://www.typing.com/student/lesson/359/j-f-and-space
+
+CARACTERES ESPECIALES:
+https://www.adslzone.net/esenciales/windows-10/como-poner-arroba-euro-dolar-alternativas/
+
+LIBRERIA MOMENT JS PARA TRABAJOS CON TIEMPO
+https://momentjs.com/
+
+Ejemplo de código
+Si aplica BEM a los elementos de su formulario, los selectores de CSS deberían tener este aspecto:
+
+.form { }                       // Block
+.form--theme-xmas { }           // Block + modifier
+.form--simple { }               // Block + modifier
+.form__input { }                // Block > element
+.form__submit { }               // Block > element
+.form__submit--disabled { }     // Block > element + modifier
+El HTML correspondiente debe verse algo como esto:
+
+<form class="form form--theme-xmas form--simple">
+  <input class="form__input" type="text" />
+  <input class="form__submit form__submit--disabled" type="submit" />
+</form>
+
+===================================================================================
+===================================================================================

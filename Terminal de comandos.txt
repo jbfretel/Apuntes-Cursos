@@ -1,0 +1,42 @@
+CURSOS DE PROGRAMAION Y UDEMY - VICTOR ROBLES YOUTUBE.
+Curso de Git y la consola
+======================================================
+para Win lista de comandos. si aparece Dir es un direcorio sino es un fichero
+la consonla de win no es key sensitive, no recono mayusculas de minusculas.
+
+tecla tab: intely sensitive autocompleta
+ 
+dir		->para listar como ls de linux
+cd Documents	-> par ir
+cd. | cd.. 	-> direcorio actual un pundo anterior dos puntos
+cd /		-> lleva a la raiz del sistema
+cd C:ruta/ruta	-> dirección del directorio
+cls		-> clear, borrar todo.
+./              -> carpeta actual
+../             -> carpeta anterior
+../../          -> carpeta tras anterior
+
+shutdown -r|-s|-l	-> -r reinicio,-s apaga,-l cierra sesión
+exit		-> cierra la terminal
+
+mkdir	nombre	-> crea carpeta
+rmdir	nombre	-> elimina carpeta
+>		-> crea archivo
+comando > archivo.txt	-> escribe la busqueda de cualquier comando en el archivo indicado.
+del		-> elimina archivo
+copy	nombre  nombre2	-> copia archivos
+		si quiero copiar a una carpeta se escribe ruta relativa:
+		copy nombrearchivo1.txt  carpeta_copia/copia_nombreachivo1.txt
+move		-> mueve achivos ejem:
+		move nombrearchivo1 carpeta_copia/ 
+ipconfig  /all	-> muestra la direccion ip de nuestra pc, /all añade mas información de ip
+help		-> muestra informacion y todos los comandos de windows
+find "pru" *.txt	-> busca todas las coinsidencias.
+find "resultado" > resBusqueda.txt -> escribe el resultado de la busque en un nuevo archivo
+more		-> para ver el contenido de un archivo .txt 
+time 		-> para ver la hora o editarla
+--version	-> para ver version del program nombre adelante ejem: git --version
+
+
+KICK FOOTBALL WXTV2020 LISTA
+

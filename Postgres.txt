@@ -1,0 +1,201 @@
+Abrir sqlshell:
+credenciales de acceso:  (de no tenener configuraciones solo precionar enter)
+
+
+\l[+]   [PATRËN]    listar bases de datos   ==>IMPORTANTE \l de list
+
+\c[onnect] [BASE-DE-DATOS|- USUARIO|- ANFITRIËN|- PUERTO|- | conninfo]  	==>IMPORTANTE \c de contected
+                  conectar a una nueva base de datos (actual: ½postgres╗)
+
+\dt[S+] [PATRËN]  listar tablas    		==>IMPORTANTE \dt data table
+
+\d[S+]            listar tablas, vistas y secuencias ==>IMPORTANTE \d "nombre_tabla" para ver contenido
+============SQL
+\h [NOMBRE]     mostrar ayuda de sintaxis de ¾rdenes SQL; 	==>IMPORTANTE en caso se requiera
+                  use ½*╗ para todas las ¾rdenes
+\h [nombre_funcion] para ayuda de referencia, ejemplo \h alter
+
+ctrl + c => para cancelar ayuda. y seguir
+
+SELECT version(); => para mostrar version de postgres instalada.
+
+;  ==> siempre colocar el punto y coma al final de una consulta SQL
+
+\g [(OPTIONS)] [FILE] ===> Ejecuta la ultima linea de comando ejecutada
+
+\timing [on|off] mostrar tiempo de ejecuci¾n de ¾rdenes (al ejecutar se activa en on)
+                   (actualmente desactivado)
+===================
+
+
+=============================================================================
+POSTGRES: INTERFAZ GRAFICA
+
+barra de herramientas: Tools => Query Tools => escribir consulta
+========
+ARCHIVOS DE CONFIGURACIÓN: (99% de problemas si no se configuran bien o al revez)
+
+* postgresql.conf   	=>configuracion total
+* pg_hba.conf		=>configuracion muestra roles y tipos de acceso a abase de datos
+* pg_ident.conf		=>mapeo de usuarios		
+========
+cosulta:
+SHOW config_file;  => muestra ruta de archivo de configuración	
+=============================================================================
+
+
+
+
+
+
+=============================================================================
+			RELACION DE COMANDOS POSTGRES
+=============================================================================
+postgres=# \?
+General
+  \copyright      mostrar tÚrminos de uso y distribuci¾n de PostgreSQL
+  \crosstabview [COLUMNAS] ejecutar la consulta y desplegar en ½crosstab╗
+  \errverbose     mostrar error mßs reciente en mßxima verbosidad
+  \g [(OPTIONS)] [FILE]  ejecuta la consulta (y envÝa el resultado a un fichero o |pipe);
+                         \g sin argumentos es equivalente a un punto y coma
+  \gdesc              describir resultado de la consulta, sin ejecutarla
+  \gexec          ejecutar la consulta, luego ejecuta cada valor del resultado
+  \gset [PREFIJO] ejecutar la consulta y almacenar los resultados en variables
+                  de psql
+  \ gx [(OPTIONS)] [FILE] como \g, pero fuerza el modo de salida expandido
+  \q              salir de psql
+  \watch [SEGS]   ejecutar consulta cada SEGS segundos
+
+Ayuda
+  \? [commands]   desplegar ayuda sobre las ¾rdenes backslash
+  \? options      desplegar ayuda sobre opciones de lÝnea de ¾rdenes
+  \? variables    desplegar ayuda sobre variables especiales
+  \h [NOMBRE]     mostrar ayuda de sintaxis de ¾rdenes SQL;
+                  use ½*╗ para todas las ¾rdenes
+
+B·fer de consulta
+  \e [ARCHIVO] [L═NEA]
+                  editar el b·fer de consulta (o archivo) con editor externo
+  \ef [NOMBRE-FUNCIËN [L═NEA]]
+                  editar una funci¾n con editor externo
+  \ev [NOMBRE-VISTA [L═NEA]]
+                  editar definici¾n de una vista con editor externo
+  \p              mostrar el contenido del b·fer de consulta
+  \r              reiniciar (limpiar) el b·fer de consulta
+  \w ARCHIVO      escribir b·fer de consulta a archivo
+
+Entrada/Salida
+  \copy ...       ejecutar orden SQL COPY con flujo de datos al cliente
+  \echo [-n] [STRING]    escribe la cadena en la salida estßndar (-n no genera el salto de lÝnea final)
+  \i ARCHIVO      ejecutar ¾rdenes desde archivo
+  \ir ARCHIVO     como \i, pero relativo a la ubicaci¾n del script actual
+  \o [ARCHIVO]    enviar resultados de consultas a archivo u |orden
+  \qecho [-n] [STRING]   escribe la cadena hacia flujo de salida \o (-n no genera el salto de lÝnea final)
+  \warn [-n] [STRING]    escribe la cadena a la salida de error estßndar (-n no genera el salto de lÝnea final)
+
+Condicional
+  \if EXPRESIËN   inicia bloque condicional
+  \elif EXPR      alternativa dentro del bloque condicional actual
+  \else           alternativa final dentro del bloque condicional actual
+  \endif          termina el bloque condicional
+
+Informativo
+   (opciones: S = desplegar objectos de sistema, + = agregar mßs detalle)
+  \d[S+]            listar tablas, vistas y secuencias 
+  \d[S+]  NOMBRE    describir tabla, Ýndice, secuencia o vista
+  \da[S]  [PATRËN]  listar funciones de agregaci¾n
+  \dA[+]  [PATRËN]  listar mÚtodos de acceso
+  \do[S]  [PATRËN]  listar las clases de operadores
+  \do[S]  [PATRËN]  listar las familias de operadores
+  \do[S]  [PATRËN]  listar los operadores de la familia de operadores
+  \dAp[+] [AMPTRN [OPFPTRN]]   list support functions of operator families
+  \db[+]  [PATRËN]  listar tablespaces
+  \dc[S+] [PATRËN]  listar conversiones
+  \dC[+]  [PATRËN]  listar conversiones de tipo (casts)
+  \dd[S]  [PATRËN]  listar comentarios de objetos que no aparecen en otra parte
+  \dD[S+] [PATRËN]  listar dominios
+  \ddp    [PATRËN]  listar privilegios por omisi¾n
+  \dE[S+] [PATRËN]  listar tablas forßneas
+  \det[+] [PATRËN]  listar tablas forßneas
+  \des[+] [PATRËN]  listar servidores forßneos
+  \deu[+] [PATRËN]  listar mapeos de usuario
+  \dew[+] [PATRËN]  listar conectores de datos externos
+  \df[anptw][S+] [PATRËN] listar funciones [s¾lo ag./normal/proc./trigger/ventana]
+  \dF[+]  [PATRËN]  listar configuraciones de b·squeda en texto
+  \dFd[+] [PATRËN]  listar diccionarios de b·squeda en texto
+  \dFp[+] [PATRËN]  listar analizadores (parsers) de b·sq. en texto
+  \dFt[+] [PATRËN]  listar plantillas de b·squeda en texto
+  \dg[S+] [PATRËN]  listar roles
+  \di[S+] [PATRËN]  listar Ýndices
+  \dl               listar objetos grandes, lo mismo que \lo_list
+  \dL[S+] [PATRËN]  listar lenguajes procedurales
+  \dm[S+] [PATRËN]  listar vistas materializadas
+  \dn[S+] [PATRËN]  listar esquemas
+  \do[S+] [PATTERN]      list operators
+  \dO[S]  [PATRËN]  listar ordenamientos (collations)
+  \dp     [PATRËN]  listar privilegios de acceso a tablas, vistas y secuencias
+  \dP[tin+] [PATRËN] listar relaciones particionadas (s¾lo tablas/Ýndices) [n=anidadas]  \drds [PAT1 [PAT2]] listar parßmetros de rol por base de datos
+  \dRp[+] [PATRËN]  listar publicaciones de replicaci¾n
+  \dRs[+] [PATRËN]  listar suscripciones de replicaci¾n
+  \ds[S+] [PATRËN]  listar secuencias
+  \dt[S+] [PATRËN]  listar tablas    		==>IMPORTANTE \dt data table
+  \dT[S+] [PATRËN]  listar tipos de dato
+  \du[S+] [PATRËN]  listar roles
+  \dv[S+] [PATRËN]  listar vistas
+  \dx[+]  [PATRËN]  listar extensiones
+  \dy[+]  [PATTERN]      list event triggers
+  \l[+]   [PATRËN]    listar bases de datos   ==>IMPORTANTE \l de list
+  \sf[+]  FUNCIËN   mostrar la definici¾n de una funci¾n
+  \sv[+]  VISTA     mostrar la definici¾n de una vista
+  \z      [PATRËN]  lo mismo que \dp
+
+Formato
+  \a              cambiar entre modo de salida alineado y sin alinear
+  \C [CADENA]     definir tÝtulo de tabla, o indefinir si es vacÝo
+  \f [CADENA]     mostrar o definir separador de campos para
+                  modo de salida sin alinear
+  \H              cambiar modo de salida HTML (actualmente desactivado)
+  \pset [NOMBRE [VALOR]]  define opci¾n de tabla de salida
+                  (border|columns|csv_fieldsep|expanded|fieldsep|fieldsep_zero|
+                  footer|format|linestyle|null|numericlocale|pager|
+                  pager_min_lines|recordsep|recordsep_zero|tableattr|title|
+                  tuples_only|unicode_border_linestyle|unicode_column_linestyle
+                  |unicode_header_linestyle)
+  \t [on|off]     mostrar s¾lo filas (actualmente desactivado)
+  \T [CADENA]     definir atributos HTML de <table>, o indefinir si es vacÝo
+  \x [on|off|auto] cambiar modo expandido (actualmente desactivado)
+
+Conexiones
+  \c[onnect] [BASE-DE-DATOS|- USUARIO|- ANFITRIËN|- PUERTO|- | conninfo]  ==>IMPORTANTE \c de contected
+                  conectar a una nueva base de datos (actual: ½postgres╗)
+  \conninfo       despliega la informaci¾n sobre la conexi¾n actual
+  \encoding [CODIFICACIËN]
+                  mostrar o definir codificaci¾n del cliente
+  \password [USUARIO]
+                  cambiar la contrase±a para un usuario en forma segura
+
+Sistema Operativo
+  \cd [DIR]        cambiar el directorio de trabajo actual
+  \setenv NOMBRE [VALOR]
+                   definir o indefinir variable de ambiente
+  \timing [on|off] mostrar tiempo de ejecuci¾n de ¾rdenes
+                   (actualmente desactivado)
+  \! [ORDEN]       ejecutar orden en intÚrprete de ¾rdenes (shell),
+                   o iniciar intÚrprete interactivo
+
+Variables
+  \prompt [TEXTO] NOMBRE  preguntar al usuario el valor de la variable
+  \set [NOMBRE [VALOR]]   definir variables internas,
+                          listar todas si no se dan parßmetros
+  \unset NOMBRE           indefinir (eliminar) variable interna
+
+Objetos Grandes
+  \lo_export LOBOID ARCHIVO
+  \lo_import ARCHIVO [COMENTARIO]
+  \lo_list
+  \lo_unlink LOBOID   operaciones con objetos grandes
+
+=====================================================================
+=====================================================================
+
+

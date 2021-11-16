@@ -1,0 +1,164 @@
+https://www.youtube.com/watch?v=tTbr9Zhsgyc borrar linux lite
+https://tutorial.djangogirls.org/es/django_orm/  
+
+#CREACION DE ENTORNO VIRTUAL DE PYTHON PARA DJANGO.
+1 crear carpeta en donde crearemos un entorno virutal de python
+2 a travez de la ventana de comandos en la carpeta seleccionada. 
+  ejecutar: py -m venv nombreCarpeta
+3 a traver de la terminal ingresar a la nueva nombreCarpeta e ingresar a la subcarpeta
+  Scripts y ejecuctar (activate) para iniciar el entorno virtual.
+4 ya activado el entorno virtual instalar django con el comnado: pip install Django==3.2
+5 para conprobar instalación ejecutar el comando: pip freeze
+#CREAR NUEVO PROYECTO EN DJANGO.
+6 para crear un nuevo proyecto ejecutamos: django-admin startproject nombreProyecto
+
+7 ingresamos a la carpeta nombreProyecto para correr el servidor y ejecutamos:
+  python manage.py runserver
+8 esto generara una dirección ip: http://127.0.0.1:8000/ copiamos y pegamos en el explorador
+
+9 para salir del entorno virtual escribimos el comando: deactivate
+
+10 abrir proyecto en un editor de codigo
+
+#CREAR APP EN EL PROYECTO DE DJANGO. NECESARIO PARA CUALQUIER BASE DE DATOS SQL
+11 desde la misma carpeta nombreProyecto crear un app con:
+   python manage.py startapp otroNombre
+
+
+====================================================================================
+Para chequear la base de datos creada en la nueva app de django luego de ser registrada dentro de
+settings.py apps.
+Ejecutar:
+1 python manage.py check nombreApp
+
+A continuación para la crear la db:
+2 python manage.py makemigrations
+  resultado:-->
+  Migrations for 'gestionPedidos':
+  gestionPedidos\migrations\0001_initial.py (<--numero de gestion)
+    - Create model Articulos
+    - Create model Clientes
+    - Create model Pedidos
+
+3 python manage.py sqlmigrate nombreApp 0001 --> (numero de gestion)
+  resultado:
+  $ python manage.py sqlmigrate gestionPedidos 0001
+  BEGIN;
+  --
+  -- Create model Articulos -->etc.
+
+4 python manage.py migrate
+  resultado:
+  Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, gestionPedidos, sessions
+  Running migrations: ect.
+
+MANIPULAR DB DESDE CONSOLA DE COMANDOS (ORM).
+#primer metodo a travez de comandos simples.
+1 python manage.py shell
+2 from getionPedidos.models import Articulos   //importamos el modelo de clase
+3 art=Articulos(nombre='mesa',seccion='decoración',precio=90)  //creamos una variable que contenga la clase y propiedades a modificar
+4 art.save() // guardamos
+
+#segundo metodo unsando create (mas rapido).
+5 art2=Articulos.objects.create(nombre='camisa',seccion='confección',precio=75) //MEJOR OPCIÓN
+
+#obtener datos a travez de clave primaria:
+t = nombreClase.objects.get(id=1)  //clave primarica id ó pk mismo resultado
+
+#modificar campo.
+6 art.precio=95 -->nombreVariable punto nuevo valor; a traves del punto ojo.
+7 art.save()
+
+
+#borrar registros.
+8 art5.Articulos.objects.get(id=2)
+9 art5.delete()
+
+###consultas tipo SELECT sql.
+10 variabli ejem lista=Articulos.objects.all()
+  *lista imprime en consola:
+  <QuerySet [<Articulos: Articulos object (1)>, <Articulos: Articulos object (3)>]>	
+  *lista.query.__str__()  # convierte a tipo cadena para que se pueda leer.
+  'SELECT "gestionPedidos_articulos"."id", "gestionPedidos_articulos"."nombre", "gestionPedidos_articulos"."seccion", "gestionPedidos_articulos"."precio" FROM "gestionPedidos_articulos"'
+
+11 exit() pasa salir del python shell
+##Continuamos con los comandos sql para db.
+#Consultas con Clausula tipo WHERE desde django.
+primero debemos programar la funcion 
+def __str__(self):
+  return 'nombre %s seccion %s' %(self.nombre,self.seccion)
+*para poder ejecutar esta nueva funcion debemos salir del shell y volver
+a realizar las migraciones con makemigration (aunque no detecte cambios) 
+migrate(aunque no detecte migraciones a aplicar) igual ya se guardaron las modificaciones.
+para que pueda ser leido por el humano con la siguiente instrucción.
+-entonces vorlver a ingresar con el shell.
+1 Articulos.objects.filter(seccion='deportes')
+2 Articulos.objects.filter(nombre='mesa',seccion='decoración')
+ *WHERE seccion=decoración and seccion=decoración (equivale a esto en sql)
+3  Articulos.objects.filter(seccion='jugueteria',precio__gte=100)
+ * __gte = > y __lte = < (mayor y menor que)
+ * precio__range(25,100) --> mostrar valores entre estos precios.
+4 Articulos.objects.filter(precio__gte=50).order_by('precio')
+ *ordena los resultados por precio en orden mayores a 50 (de menor a mayor)
+ *(precio__gte=50).order_by(-'precio') -->el signo menos - equivale a la instruccion desc en sql
+  orden de invertido (de mayor a menor)
+===========================================================
+===========================================================
+======================== POSTGRESTQL ======================
+1 Abrir postgrestsql
+2 Seleccionar en Databases(1) postgres
+3 click derecho sobre esta y seleccionar query tool
+4 introducir: create database nombredb --> (ArticulosClientes)
+5 boton de play o rayo. -->Query returned successfully in 1 secs 470 msec.
+6 en Databases(1) click derecho y refresh
+7 desde la terminal vscode u otra, desde la carpeta del proyecto.
+  instalar en la linea de comandos: pip install psycopg2
+8 cambiar la configuracion en settings.py del proyecto.
+  en DATABASE configurar:
+  'ENGINE': 'django.db.backends.postgresql_psycopg2',
+  'NAME': 'ArticulosClientes',
+  'USER': 'postcres',
+  'PASSWORD': 'comando787',
+  'HOST': 'localhost',  # 127.0.0.1
+  'DATABASE_PORT': '5432',
+9 realizar las migraciones con :
+  python manage.py makemigrations y
+  python manage.py migrate
+==============================================================
+==============PANEL DE ADMINISTACIONS DJANGO==================
+# Crea super Usuario
+1 python manage.py createsuperuser
+  resultado:
+  λ python manage.py createsuperuser
+  Username (leave blank to use 'jb'):
+  Email address: jluisbarrios787@gmai.com
+  Password:
+  Password (again):
+  Superuser created successfully.
+2 desde el archivo admin.py
+  importar:
+  from nompreApp import nombreModelo
+
+class Employee(models.Model):
+  names=models.CharField(max_length=150, verbose_name='Nombre')
+  dni=models.CharField(max_length=10, unique=True, verbose_name='Nombre')
+  date_joined=models.DateField(default=datetime.now, verbose_name='Fecha de registro')
+  date_created=models.DateTimeField(auto_now=True)
+  date_updated=models.DateTimeField(auto_now_add=True)
+  gender=models.CharField(max_length=10)
+  age=models.PositiveIntegerField(default=0)
+  salary=models.DecimalField(default=0.00,max_digits=9,decimal_places=2)
+  state=models.BooleanField(default=True)
+  avatar=models.ImageField(upload_to='avatar/%y/%m/%d',null=True,blank=True)
+  cvitae=models.FileField(upload_to='cvitae/%y/%m/%d',null=True,blank=True)
+
+  def __str__(self):
+   return self.names
+
+class Meta:
+  verbose_name='Empleado'
+  verbose_name_plural='Empleados'
+  db_table='empleado'
+  ordering=['id']
+

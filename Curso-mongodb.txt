@@ -1,0 +1,4 @@
+INICIALIZAR PROYECTO:
+1 Crear la carpeta
+2 en la terminal, ejecucar npm init --y
+3 npm install mongoose --save

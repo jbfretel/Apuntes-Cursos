@@ -1,0 +1,89 @@
+CURSO DE GIT PILDORAS INFORMATICAS
+
+GIT tenemos tres areas (aprender las definiciones en ingles ojo)
+*Working Dyrectory:direcotirio de trabajo (modified)
+  --> git add (comando)
+    *Staging Area:Area de preparación (staged)
+      --> git commit (comando)
+        *Local Repository:Directorio de Git (committed "listos para ser subido,enviados") para compartir hacer in push
+	   git push origin master (subir el repositorio a github)
+====================================================================
+GIT CONFIGURACIÓN (solo una vez)
+
+$ git config --global user.name "Jorge Barff"
+$ git config --global user.email "jluisbarrios787@gmail.com"
+$ git config --list (para confirmar los datos)
+
+====================================================================
+GIT crear o clonar repositorio
+
+$ git init (inicialia repositorio vacio de git)(ls -a solo para ver lo creado por git),
+  git init no sobre escribe un repositorio ya creado
+====================================================================
+GIT ADD y GIT STATUS: en la terminal de vs ejecutar el comando.
+
+$ git status (muestra los archivos agregados al 2do estado "staged" en verde, los que no en color rojo)
+$ git status -s (modo simplificado)
+
+$ git add {nombre del archivo}
+$ git add index.html  (ahora el archivo esta en el 2do estado "staged" identificado en color verde)             
+
+$ git add --all  (para agregar todos los archivos que aun o haya sido guardados) ó
+$ git add .
+
+$ git log --oneline (permite ver la cantidad de commits realizados en el proyecto)
+---------------------------------------------------
+git checkout -- index.html (para descartar cambios)
+git diff index.html (para ver los cambior realizados)
+---------------------------------------------------
+GIT IGNORAR ARCHIVOS 
+crear un archivo con el editor de codigo llmanado:
+.gitignore (y dentro de este escribir los nombre de los archivos a ignorar)
+luego add "agregar el archivo .gitignore":
+$ git add .gitignore
+====================================================================
+GIT COMMIT (3er estado)
+
+$ git commit -m "comentario sobre el archivo a subir"
+ (de no agregaar -m "comentario")
+se abre automaticamete el edito vim, para poner comentario en la parte superior
+para salir press Esc luego :wq y enter para guardar.
+
+$git commit -am (dos comandos en unos, commit y add, colocar el comentario "" luego del -am)
+
+$git commit --amend (abre el editor VIM para modificar comentarios o errores)
+(dentro de VIM):
+:i => entrar en modo edición y (editar)
+escape => salir modo edicion
+:wq y enter para guardar.
+====================================================================
+GIT ver el estado de los COMMIT
+
+$ git log
+====================================================================
+GIT BRANCH (crer un nuevo branch (rama)) luego de guardar con un commit.
+es posible crear un nuevo branch del master (todos los archivos dentro de este)con un nuevo nombre.
+
+$ git branch (para ver en que rama te encuentras)
+
+$ git branch copiaMaster (ó cualquier otro nombre) luego -->
+$ git checkout copiaMaster (para moverte dentro de esta nueva copia de archivos copiaMaster)
+$ git brach (para verificar el cambio de rama en el que te encuentras ahora)
+====================================================================
+GIT configurando github, git remote y git push
+
+$ git remote add origin https://github.com/jbfretel/PruebaCursoGit.git
+
+$ git remote -v (para ver los repositorios agregados satisfactoriamente)
+
+$ git push origin master
+
+luego colorcar email y pass
+
+--->para subir cambios verificar con el git status, luego agregar con git add -all(si fuse todo a subir)
+verificar con git remote -v, luego con git push origin master subir los archivos. y verificar en github
+
+====================================================================
+GIT PULL se usa para jalar el commit (el push modificado por otro) hacia mi repositorio remoto (en mi pc)
+
+$git pull origin master

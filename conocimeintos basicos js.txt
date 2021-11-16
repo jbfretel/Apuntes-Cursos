@@ -1,0 +1,189 @@
+Dominar en JavaScript
+
+Metodos de los strings
+[toUpperCase,toLowerCase,indexOf,replace,
+substring,slice,trim,starWith,endsWith,
+includes,repeat]
+
+1. funciones declaradas
+2. Arreglos
+3. Objetos
+4. Ciclos for,while,do while,foreach,forof,forin
+5. Manejo de errores try catch
+6. Destructuracion
+7. Objetos literales
+8. Parametros rest y operador spread
+9. Arron function
+10. Prototipos
+11. Herencia prototipica
+12. Clases y herencia
+13. Metodos estaticos, getters y setters
+14. Expreciones regulares
+15. Funciones anonimas autoejecutables
+16. Modulos import / export
+17. Temporizadores setTimeout y setInterval
+18. Asicronia callbacks
+19. Promesas
+20. Async Await
+21. Symbol
+22. Set
+23. Map
+24. Weaksets y weakmaps
+25. Iterables y teratos
+26. Gerenradores
+27. Propiedades dinamicas de los objetos
+28. This
+29. Call, aplly, bind
+30. Json
+
+//DOM TRAVERSING
+1. Nodos elementos y selectores.
+	document.getElementbyid()
+	document.queryselector()
+	document.queryselectorAll()
+	const $cards = document.queryselector(".cards") //guardar en variables.
+
+2. Atributos y data-attributes.
+   	.getAttribute()
+	.setAttribue("","")
+	.hasAttribute()
+	.removeAttribute()
+3. Estilos y variables.
+	.style
+	.style.backgroundColorejemplo 
+	.style.setProperty("background-color","red")
+	.style.width=50%,
+	.getComputedStyle()
+	.getComputedStyle().getPropertyValue().
+
+4. Clases CSS
+	.className
+	=================================
+	.classList
+	.classList.contains("class") //true of false
+	.classList.add("newClass")
+	.classList.remove("class")
+	.classList.toggle("class"),si no la tine la pone, si la tiene la quita
+5. Texto y HTML
+	.textContent = ;
+	.innerHTML = ;
+	.outerHTML = ;//reemplaza el elemento padre del id
+6. DOM Traversing
+	.children
+	.children[2]
+	.parentElement //elemento padre de contenedor del id
+	.firstElementChild
+	.lastElementChild
+	.previousElementSibling //elemento hermano anterior
+	.nextElementsibing //elemento hermano siguiente del que contiene el selector id o class
+	.closes("") //si su elemento padre es <-
+7. Creando Fragmentos y elementos.
+	document.createElement("elemento")
+	docuent.createTextNode("texto")
+	========================================
+	const $figure = document.createElement("figure"),
+      	      $img = document.createElement("img"),
+      	      $figcaption = document.createElement("figcaption"),
+      	      $figcaptionText = document.createTextNode("Animals"),
+      	      $cards = document.querySelector(".cards");
+
+	$figure.appendChild($img)
+	$figure.classList.add("card")
+	$img.setAttribute("src","https://placeimg.com/200/200/animals")
+	$img.setAttribute("alt","Animals")
+	$figure.appendChild($figcaption)
+	$figcaption.appendChild($figcaptionText)
+	$cards.appendChild($figure)
+
+	const meses = [
+	  "Enero",
+	  "Febrero",
+	  "Marzo",  
+	]
+
+	const $ul = document.createElement("ul")
+	const $fragment = document.createDocumentFragment()
+	meses.forEach((el)=> {
+	  const $li = document.createElement("li")
+	  $li.textContent = el
+	  $fragment.appendChild($li)
+	});
+	
+	$ul.appendChild($fragment)
+	document.body.appendChild($ul)
+
+8. Template HTML
+	<template id="template-card">
+    	  <figure class="card">
+      	    <img>
+      	    <figcaption></figcaption>
+    	  </figure>
+  	</template>
+	======================================
+	const $cards = document.querySelector(".cards"),
+  	      $template = document.getElementById("template-card").content,
+  	      $fragment = document.createDocumentFragment(),
+  	cardsContent = [
+    	{
+      	title: "Tecnología",
+      	img: "https://placeimg.com/200/200/tech",
+    	},
+    	{
+      	title: "Animales",
+      	img: "https://placeimg.com/200/200/animals",
+    	},
+    	{
+      	title: "Arquitectura",
+      	img: "https://placeimg.com/200/200/arch",
+    	},
+    	{
+      	title: "Gente",
+      	img: "https://placeimg.com/200/200/people",
+    	},
+    	{
+      	title: "Naturaleza",
+      	img: "https://placeimg.com/200/200/nature",
+    	},
+  	];
+
+	==========
+	cardsContent.forEach((el) => {
+  	$template.querySelector("img").setAttribute("src", el.img);
+  	$template.querySelector("img").setAttribute("alt", el.title);
+  	$template.querySelector("figcaption").textContent = el.title;
+
+  	let $clone = document.importNode($template, true);
+  	$fragment.appendChild($clone);
+	});
+	$cards.appendChild($fragment)
+	==========
+	const $card = document.querySelector(".cards"),
+      	      $template = document.getElementById("teplate-card").content,
+      	      $fragment = document.createDocumentFragment(),
+      	cardContent = [
+        {
+          title: "Tecnología",
+          img: "https://placeimg.com/200/200/tech",
+        },
+        {
+          title: "Animales",
+          img: "https://placeimg.com/200/200/animals",
+        },
+        {
+          title: "Arquitectura",
+          img: "https://placeimg.com/200/200/arch",
+        },
+        {
+          title: "Gente",
+          img: "https://placeimg.com/200/200/people",
+        },
+        {
+          title: "Naturaleza",
+          img: "https://placeimg.com/200/200/nature",
+        },
+      	];
+
+	cardContent.forEach(el => {
+  	$template 
+	});
+
